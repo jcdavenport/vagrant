@@ -1,0 +1,20 @@
+version: '3.5'
+services:
+  terminalserver:
+    image: danielguerra/ubuntu-xrdp
+    container_name: xrdp
+    hostname: terminalserver
+    restart: always
+    shm_size: 2g
+    environment:
+       PASSWORDHASH: $$1$$z53Cg/fV$$06o379IvIOxj/ESruVKrG1
+       IDLETIME: 11
+    ports:
+      - "3389:3389"
+      - "2200:22"
+    volumes:
+      - ssh:/etc/ssh/
+      - /home/:/home/
+
+volumes:
+  ssh:
